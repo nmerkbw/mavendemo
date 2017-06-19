@@ -9,21 +9,21 @@ import java.util.*;
  * @since 2016-7-19
  */
 public class LogUtil {
-	public static final int ERROR = 0;
-	public static final int WARN = 1;
-	public static final int INFO = 2;
-	public static final int DEBUG = 3;
-	
-	public static final int DEFAULT = DEBUG;//默认
+	private static final int ERROR = 0;
+    private static final int WARN = 1;
+    private static final int INFO = 2;
+    private static final int DEBUG = 3;
+
+    private static final int DEFAULT = DEBUG;//默认
 	
 	
 	/**
 	 * 输出日志到控制台
-	 * @param outStr
+	 * @param outStr str
 	 */
 	public static void log_debug2(String outStr){
 		int level = DEBUG;
-		if(level<= DEFAULT)
+		if(level <= DEFAULT)
 			System.out.println(DateUtil.fmtDateToMillisecond(new Date()) +"："+ outStr);
 	}
 	

@@ -3,6 +3,7 @@ package com.example.zookeeper.zkclient;
 import org.I0Itec.zkclient.ZkClient;
 
 /**
+ * 创建结点的demo
  * Created by louyuting on 2017/6/7.
  */
 public class CreateNodeSample {

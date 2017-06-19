@@ -3,11 +3,10 @@ package com.example.zookeeper.zkclient;
 import org.I0Itec.zkclient.IZkChildListener;
 import org.I0Itec.zkclient.ZkClient;
 
-import javax.sound.midi.Soundbank;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
+ * 获取子结点demo
  * Created by louyuting on 2017/6/7.
  */
 public class GetChildrenSample {
@@ -25,7 +24,7 @@ public class GetChildrenSample {
                 System.out.println(parentPath + ". it's child changed, currentChilds: " + currentChilds);
             }
         });
-        System.out.println(zkClient.getChildren("/zk-book"));
+        System.out.println("/zk-book 的子结点是：\n" + zkClient.getChildren("/zk-book"));
         Thread.sleep(1000);
         zkClient.createPersistent(path+"/c1");
         Thread.sleep(1000);
