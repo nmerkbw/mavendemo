@@ -1,22 +1,22 @@
 package com.example.zookeeper.curator.recipes;
 
-import com.example.utils.LogUtil;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
-import org.apache.curator.framework.recipes.locks.InterProcessMutex;
+import org.apache.curator.framework.recipes.atomic.AtomicValue;
+import org.apache.curator.framework.recipes.atomic.DistributedAtomicInteger;
 import org.apache.curator.retry.ExponentialBackoffRetry;
+import org.apache.curator.retry.RetryNTimes;
 
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
- * 分布式锁的实现: 借助curator来实现 InterProcessLock；
- * 其实也就是 InterProcessLock.acquire() 函数和 InterProcessLock.release()函数。
- *
+ * 分布式计数器
  * Created by louyuting on 2017/6/19.
  */
-public class DistributedLockSample {
+public class DistributedAtomicCount {
 
-    static String path = "/distributed_lock/lock";
+    static String path = "/distributed_atomic_count/lock";
     static CuratorFramework client = CuratorFrameworkFactory.builder()
             .connectString("123.206.13.151:2181")
             .sessionTimeoutMs(5000)
@@ -24,10 +24,13 @@ public class DistributedLockSample {
             .retryPolicy(new ExponentialBackoffRetry(1000, 3,3000))
             .build();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         client.start();
-        final InterProcessMutex lock = new InterProcessMutex(client, path);
+
+        DistributedAtomicInteger distributedAtomicInteger = new DistributedAtomicInteger(client, path, new RetryNTimes(3, 1000));
+
         final CountDownLatch down = new CountDownLatch(1);
+        final CountDownLatch count = new CountDownLatch(40);
 
         for (int i=0; i<40; i++){
             new Thread(new Runnable() {
@@ -35,14 +38,8 @@ public class DistributedLockSample {
                 public void run() {
                     try {
                         down.await();
-                        lock.acquire();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                    LogUtil.log_debug(" 是生成的订单号！");
-                    try {
-                        lock.release();
+                        distributedAtomicInteger.increment();
+                        count.countDown();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -50,6 +47,9 @@ public class DistributedLockSample {
             }).start();
         }
         down.countDown();
+        count.await();
+        TimeUnit.SECONDS.sleep(2);
+        AtomicValue<Integer> rc = distributedAtomicInteger.get();
+        System.out.println("Result: " + rc.succeeded() + " value " + rc.postValue());
     }
-
 }
