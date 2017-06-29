@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="EclipseCodeFormatter">
+    <option name="defaultSettings" value="true" />
+    <option name="formatter" value="ECLIPSE" />
+    <option name="id" value="1498131578793" />
+    <option name="name" value="default" />
+    <option name="pathToConfigFileJava" value="$PROJECT_DIR$/../../cainiao/codeformat.xml" />
+    <option name="selectedJavaProfile" value="taobao-ios-format" />
+  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
