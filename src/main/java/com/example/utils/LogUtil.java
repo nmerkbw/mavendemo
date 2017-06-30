@@ -19,12 +19,12 @@ public class LogUtil {
 	
 	/**
 	 * 输出日志到控制台
-	 * @param outStr str
+	 * @param object str
 	 */
-	public static void log_debug2(String outStr){
+	public static void log(Object object){
 		int level = DEBUG;
 		if(level <= DEFAULT)
-			System.out.println(DateUtil.fmtDateToMillisecond(new Date()) +"："+ outStr);
+			System.out.println(DateUtil.fmtDateToMillisecond(new Date()) +"："+ object.toString());
 	}
 	
 	public static void log_error(String outStr){

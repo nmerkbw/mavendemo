@@ -1,4 +1,4 @@
-package com.example.java.lambda;
+package com.example.java.java8.lambda;
 
 /**
  * lambda表达式测试demo
