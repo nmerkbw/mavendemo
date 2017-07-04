@@ -1,6 +1,10 @@
 package com.example.java.java8.lambda;
 
 import com.example.utils.LogUtil;
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * note: lambda表达式的测试代码:
@@ -42,4 +46,26 @@ public class LambdaTest {
     private Integer operate(int a, int b, MathOperation mathOperation){
         return mathOperation.operation(a, b);
     }
+
+    @Test
+    public void test(){
+        List features = Arrays.asList("Lambdas", "Default Method", "Stream API",
+                "Date and Time API");
+        features.forEach(n -> System.out.println(n));
+
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
