@@ -79,7 +79,7 @@ public class MockitoTest1 {
     }
 
 
-    // 参数匹配器 1
+    // 参数匹配器 1 anyInt()
     @Test
     public void test3(){
         // stubbing using built-in anyInt() argument matcher

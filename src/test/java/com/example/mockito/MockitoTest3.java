@@ -16,7 +16,6 @@ import static org.mockito.Mockito.*;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class MockitoTest3 {
-
     @Mock
     private List mockList;
 
