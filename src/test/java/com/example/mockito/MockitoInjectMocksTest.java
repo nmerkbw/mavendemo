@@ -35,6 +35,7 @@ public class MockitoInjectMocksTest extends SampleBaseTestCase {
     @Test
     public void shouldDoSomething() {
         manager.initiateArticle();
+        dbMock.addListener(new ArticleListener());
         verify(dbMock).addListener(any(ArticleListener.class));
     }
 }

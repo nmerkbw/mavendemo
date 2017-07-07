@@ -4,6 +4,9 @@ import java.util.Collection;
 import java.util.Random;
 import java.util.function.Predicate;
 
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.HashBiMap;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multimap;
@@ -11,6 +14,7 @@ import com.google.common.collect.Multimaps;
 import com.google.common.collect.Multiset;
 import com.google.common.collect.Multisets;
 import com.google.common.collect.Sets;
+import com.google.common.collect.Table;
 import org.junit.Test;
 
 /**
@@ -26,7 +30,7 @@ import org.junit.Test;
 public class MultiCollections {
     //Multiset 它可以多次添加相等的元素，增加了计数的功能。
     @Test
-    public void test1() throws InterruptedException {
+    public void test_multiSet() throws InterruptedException {
         Multiset<Integer> multiset = HashMultiset.create();
         Random random = new Random();
         Predicate<Integer> predicate = i -> (i <= 10) ;
@@ -40,7 +44,7 @@ public class MultiCollections {
     }
 
     @Test
-    public void test0(){
+    public void test_className(){
         MultiCollections instance = new MultiCollections();
         System.out.println(instance.getClass().getName()+"####"+
             instance.getClass().getMethods()[0].getDeclaringClass());
@@ -48,7 +52,7 @@ public class MultiCollections {
 
     // multiMap :类似于a -> [1, 2, 4] b -> 3 c -> 5 的结构。
     @Test
-    public void test2(){
+    public void test_multiMap(){
         Multimap<String, String> multimap = HashMultimap.create();
         multimap.put("a", "b");
         multimap.put("a", "b");
@@ -62,5 +66,25 @@ public class MultiCollections {
         // 返回Map的视图
         Collection<String> res = multimap.get("a");
         System.out.println(multimap);
+    }
+
+    @Test
+    public void test_biMap(){
+        BiMap<Integer, String> biMap = HashBiMap.create();
+        biMap.put(1, "value1");
+        biMap.put(2, "value2");
+        biMap.put(3, "value3");
+
+        BiMap<String, Integer> reserveBiMap = biMap.inverse();
+        System.out.println(reserveBiMap.toString());
+    }
+
+    // Table有两个支持所有类型的键：”行”和”列”。
+    @Test
+    public void test_table(){
+        Table<Integer, Integer, String> table = HashBasedTable.create();
+        table.put(1,1,"value_1_1");
+        table.put(3,5,"value_3_5");
+        System.out.println(table.toString());
     }
 }
