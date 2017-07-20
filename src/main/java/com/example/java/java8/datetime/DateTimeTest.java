@@ -19,9 +19,10 @@ public class DateTimeTest {
     @Test
     public void test1(){
         LocalDateTime timePoint = LocalDateTime.now();// current date and time
-        System.err.println(timePoint);
+        System.out.println(timePoint.toLocalTime());
+        System.out.println(timePoint);
 
-        System.err.println(LocalDate.of(2012, Month.DECEMBER, 12));
+        System.out.println(LocalDate.of(2012, Month.DECEMBER, 12));
         System.out.println(LocalDate.ofEpochDay(150));// from 1970
 
         System.out.println(LocalTime.of(17,18));
@@ -43,5 +44,11 @@ public class DateTimeTest {
         LocalDateTime timePoint = LocalDateTime.now();// current date and time
         LocalDateTime thePast = timePoint.withDayOfMonth(10).withYear(2010);
         LocalDateTime yetAnother = thePast.plusWeeks(3).plus(3, ChronoUnit.WEEKS);
+    }
+
+    @Test
+    public void test4(){
+        System.out.println(LocalDate.now());
+        System.out.println(LocalTime.now());
     }
 }

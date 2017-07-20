@@ -58,6 +58,7 @@ public class MockitoTest1 {
     public void test1() {
         mockedList.add("one");
         mockedList.clear();
+        // 验证前面的两个函数被调用过
         verify(mockedList).add("one");
         verify(mockedList).clear();
         mockedList.clear();

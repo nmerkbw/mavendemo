@@ -22,7 +22,7 @@ import static org.mockito.Mockito.*;
  * email chris.lyt@alibaba-inc.com
  * date 04/07/2017
  */
-public class MockitoInjectMocksTest extends SampleBaseTestCase {
+public class MockitoInjectMocksTest extends BaseTestCase {
     @Mock
     private ArticleCalculator calculator;
     @Mock(name = "database") private ArticleDatabase dbMock; // note the mock name attribute
@@ -37,12 +37,5 @@ public class MockitoInjectMocksTest extends SampleBaseTestCase {
         manager.initiateArticle();
         dbMock.addListener(new ArticleListener());
         verify(dbMock).addListener(any(ArticleListener.class));
-    }
-}
-
-class SampleBaseTestCase {
-    @Before
-    public void initMocks() {
-        MockitoAnnotations.initMocks(this);
     }
 }
