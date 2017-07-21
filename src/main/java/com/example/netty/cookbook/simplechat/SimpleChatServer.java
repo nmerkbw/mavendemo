@@ -7,12 +7,14 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by louyuting on 16/12/8.
  * 启动服务端
  */
 public class SimpleChatServer {
+
     private int port;
 
     public SimpleChatServer(int port){
@@ -21,9 +23,9 @@ public class SimpleChatServer {
 
     public void run() throws Exception{
         //NioEventLoopGroup是用来处理IO操作的多线程事件循环器
-        //boss用来接收进来的连接
-        EventLoopGroup bossGroup = new NioEventLoopGroup();
-        //用来处理已经被接收的连接;
+        //boss用来接收进来的连接，
+        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
+        //用来处理已经被接收的连接;默认是电脑CPU数*2
         EventLoopGroup workerGroup = new NioEventLoopGroup();
 
         try{
@@ -47,13 +49,9 @@ public class SimpleChatServer {
             //在本例子中不会发生,这时可以关闭服务器了
             future.channel().closeFuture().sync();
         } finally {
-            //
             workerGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();
-
-            LogUtil.log_debug("SimpleChatServer 关闭了");
         }
-
     }
 
     public static void main(String[] args) throws Exception {

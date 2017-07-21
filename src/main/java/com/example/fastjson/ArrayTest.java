@@ -1,14 +1,12 @@
 package com.example.fastjson;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
-import com.taobao.security.util.SecurityUtil;
-import org.apache.commons.lang3.SystemUtils;
+import com.example.fastjson.domain.User;
 import org.junit.Test;
 
 /**

@@ -1,4 +1,4 @@
-package com.example.fastjson;
+package com.example.fastjson.domain;
 
 /**
  * description
