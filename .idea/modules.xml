@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/java-demo/java-demo.iml" filepath="$PROJECT_DIR$/java-demo/java-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/javamaven.iml" filepath="$PROJECT_DIR$/javamaven.iml" />
       <module fileurl="file://$PROJECT_DIR$/mockito-demo/mockito-demo.iml" filepath="$PROJECT_DIR$/mockito-demo/mockito-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/netty-RPC-V1/netty-RPC-V1.iml" filepath="$PROJECT_DIR$/netty-RPC-V1/netty-RPC-V1.iml" />
       <module fileurl="file://$PROJECT_DIR$/netty-demo/netty-demo.iml" filepath="$PROJECT_DIR$/netty-demo/netty-demo.iml" />
     </modules>
   </component>

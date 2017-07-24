@@ -12,6 +12,7 @@
         <module name="java-demo" />
         <module name="mockito-demo" />
         <module name="netty-demo" />
+        <module name="netty-RPC-V1" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
@@ -19,9 +20,10 @@
       <module name="common" target="1.8" />
       <module name="distributed-demo" target="1.8" />
       <module name="java-demo" target="1.8" />
-      <module name="javamaven" target="1.8" />
+      <module name="javamaven" target="1.5" />
       <module name="mockito-demo" target="1.8" />
       <module name="netty-demo" target="1.8" />
+      <module name="netty-RPC-V1" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
