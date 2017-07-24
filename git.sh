@@ -17,5 +17,4 @@ git merge origin/master
 echo "git push origin master:master"
 git push origin master:master
 
-
 sleep 5s #睡眠5s
