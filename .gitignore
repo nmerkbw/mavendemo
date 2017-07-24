@@ -1,5 +1,10 @@
 # Created by .ignore support plugin (hsz.mobi)
 .DS_Store
 .gitignore
-target/*
 .idea/*
+algorithm/target/*
+common/target/*
+distributed-demo/target/*
+java-demo/target/*
+mockito-demo/target/*
+netty-demo/target/*
