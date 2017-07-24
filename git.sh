@@ -4,7 +4,7 @@ echo "start git add commit fetch merge push"
 echo "git add -A"
 git add -A
 
-echo "git commit -m 'leetcode-louyuting'"
+echo "git commit -m 'java-maven'"
 git commit -m 'java-maven'
 
 echo "git fetch origin master"
