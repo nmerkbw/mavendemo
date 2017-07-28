@@ -13,6 +13,7 @@
         <module name="mockito-demo" />
         <module name="netty-demo" />
         <module name="netty-RPC-V1" />
+        <module name="springboot-demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
@@ -24,6 +25,7 @@
       <module name="mockito-demo" target="1.8" />
       <module name="netty-demo" target="1.8" />
       <module name="netty-RPC-V1" target="1.8" />
+      <module name="springboot-demo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

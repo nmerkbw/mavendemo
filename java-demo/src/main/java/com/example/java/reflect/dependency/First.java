@@ -21,6 +21,7 @@ public class First {
 
     }
 
+    // 先执行这段代码段然后再执行构造器
     {
         System.out.println("staticA="+staticA);
         System.out.println("B=" + B);
