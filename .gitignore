@@ -10,3 +10,4 @@ mockito-demo/target/*
 netty-demo/target/*
 netty-RPC-V1/target/*
 springboot-demo/target/*
+*.log
