@@ -15,23 +15,19 @@ import java.lang.reflect.Modifier;
  * 反射机制的测试代码
  */
 public class ReflectTest extends Parent implements Serializable{
-
     private String field1="field1";
     protected String field2="field2";
     public String field3="field3";
     String field4="field3";
 
-
-    public static void main(String[] args) {
-
-    }
-
+    // 获取Class的全路径名
     @Test
     public void test1(){
         ReflectTest reflectTest = new ReflectTest();
         System.out.println(reflectTest.getClass().getName());
     }
 
+    //输出类的信息：class com.example.java.reflect.ReflectTest
     @Test
     public void test2() throws ClassNotFoundException {
         Class<?> class1 = null;
@@ -39,15 +35,14 @@ public class ReflectTest extends Parent implements Serializable{
         System.out.println("类名称是:"+class1);
     }
 
+    // 获取一个对象的父类与实现的接口
     @Test
     public void test3() throws ClassNotFoundException {
         Class<?> clazz = null;
         clazz = Class.forName("com.example.java.reflect.ReflectTest");
-
         //获取父类
         Class<?> parentClass = clazz.getSuperclass();
         System.out.println("clazz的父类为：" + parentClass.getName());
-
         // 获取所有的接口
         Class<?> intes[] = clazz.getInterfaces();
         System.out.println("clazz实现的接口有：");
@@ -57,13 +52,13 @@ public class ReflectTest extends Parent implements Serializable{
     }
 
     /**
-     * 获取某一个类中全部构造函数 以及 实例化一个类对象
+     * 获取某一个类中全部构造函数以及实例化一个类对象
      * @throws Exception
      */
     @Test
     public void test4() throws Exception {
         Class<?> class1 = null;
-        class1 = Class.forName("com.example.java.reflect.User");
+        class1 = Class.forName("com.example.java.reflect.dependency.User");
         // 第一种方法，实例化默认构造方法，调用set赋值
         User user = (User) class1.newInstance();
         user.setAge(23);
@@ -93,9 +88,11 @@ public class ReflectTest extends Parent implements Serializable{
         // 结果 User [age=23, name=LouLou]
         user = (User) cons[1].newInstance("LouLou");
         System.out.println(user);
+        System.out.println(cons[2].newInstance());
         // 结果 User [age=0, name=LouLou]
     }
 
+    // 获取某个类的全部属性
     @Test
     public void test5() throws Exception {
         Class<?> clazz = null;

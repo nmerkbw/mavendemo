@@ -7,8 +7,8 @@ package com.example.java.reflect.dependency;
  * date 2017/7/28
  */
 public class User {
-    private int age;
-    private String name;
+    private int age=0;
+    private String name="";
     public User() {
         super();
     }
