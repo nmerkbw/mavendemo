@@ -1,5 +1,7 @@
 package com.example.test.aop.demo4;
 
+import com.example.test.aop.demo4.annotations.Authority;
+
 /**
  * description
  * author ximu
@@ -9,7 +11,14 @@ package com.example.test.aop.demo4;
 public class PerformanceImpl implements Performance {
     @Override
     public String perfance() {
-        System.err.println("正确的执行了表演");
+        System.out.println("正确的执行了表演");
         return "default";
+    }
+
+    @Override
+    @Authority
+    public String perfance(String name) {
+        System.out.println("正确的执行了表演" + name);
+        return "default-@Authority";
     }
 }

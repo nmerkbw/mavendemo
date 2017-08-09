@@ -15,6 +15,9 @@ public class AppMain {
         Performance performance = (Performance)applicationContext.getBean("performance");
         String res = performance.perfance();
         System.out.println("main:" + res);
+        System.out.println("=====================================================");
+        String res2 = performance.perfance("louyuting");
+        System.out.println("main:" + res2);
     }
 
 }

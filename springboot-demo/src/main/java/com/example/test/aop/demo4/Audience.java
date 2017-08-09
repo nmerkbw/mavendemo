@@ -1,9 +1,7 @@
 package com.example.test.aop.demo4;
 
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -17,7 +15,7 @@ import org.aspectj.lang.annotation.Pointcut;
 @Aspect
 public class Audience {
 
-    @Pointcut("execution(* com.example.test.aop.demo4.Performance.perfance(..))")
+    @Pointcut("execution(* com.example.test.aop.demo4.Performance.perfance(..)) && @annotation(com.example.test.aop.demo4.annotations.Authority)")
     public void performance(){}
 
     /**
@@ -40,7 +38,7 @@ public class Audience {
     /**
      * 表演之后，欢呼，
      */
-    @AfterReturning("execution(* com.example.test.aop.demo4.Performance.perfance(..))")
+    @AfterReturning("performance()")
     public void applause(){
         System.out.println("表演之后：欢呼");
     }
@@ -57,6 +55,7 @@ public class Audience {
      * 整个表演的过程
      * @param joinPoint
      */
+    /**
     @Around("performance()")
     public String watchPerformance(ProceedingJoinPoint joinPoint){
         try {
@@ -65,7 +64,7 @@ public class Audience {
             // 表演
             Object r = joinPoint.proceed();// r是获取到的perfance()函数的执行返回值
             String res = (String)r;
-            System.err.println("return:" + res);
+            System.out.println("Around-return:" + res);
             System.out.println("Around-表演之后：欢呼");
             res = "修改了";
             return res;
@@ -75,4 +74,5 @@ public class Audience {
             return "exception";
         }
     }
+    */
 }

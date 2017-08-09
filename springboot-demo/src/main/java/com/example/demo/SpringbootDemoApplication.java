@@ -30,7 +30,7 @@ public class SpringbootDemoApplication {
         TimeUnit.MILLISECONDS.sleep(10l);
 
         System.out.println(res);
-        log.info("debug输出信息{}", res);
+        //log.info("debug输出信息{}", res);
         return user;
     }
 

@@ -17,10 +17,15 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @EnableAspectJAutoProxy
 public class ConfigBean {
 
+    /**
+     * 注入切面这个bean
+     * @return
+     */
     @Bean
     public Audience audience(){
         return new Audience();
     }
+
     @Bean(value = "performance")
     public Performance performance(){
         return new PerformanceImpl();

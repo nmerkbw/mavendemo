@@ -11,4 +11,7 @@ public interface Performance {
      * 当执行方法时要触发通知，所以需要一个切面
      */
     String perfance();
+
+
+    String perfance(String name);
 }

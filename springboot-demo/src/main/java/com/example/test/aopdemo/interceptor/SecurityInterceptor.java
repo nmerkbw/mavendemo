@@ -1,5 +1,7 @@
 package com.example.test.aopdemo.interceptor;
 
+import java.lang.reflect.Method;
+
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 
@@ -14,6 +16,8 @@ public class SecurityInterceptor implements MethodInterceptor{
     @Override
     public Object invoke(MethodInvocation methodInvocation) throws Throwable {
         System.err.println("执行安全检验！");
+        Method method = methodInvocation.getMethod();
+        System.err.println(method);
         return methodInvocation.proceed();
     }
 }

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AjcSettings">
+    <option name="ajcPath" value="$MAVEN_REPOSITORY$/org/aspectj/aspectjtools/1.8.7/aspectjtools-1.8.7.jar" />
+    <option name="delegateToJavac" value="true" />
+  </component>
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile name="Maven default annotation processors profile" enabled="true">
@@ -21,11 +25,10 @@
       <module name="common" target="1.8" />
       <module name="distributed-demo" target="1.8" />
       <module name="java-demo" target="1.8" />
-      <module name="javamaven" target="1.5" />
+      <module name="javamaven" target="1.8" />
       <module name="mockito-demo" target="1.8" />
       <module name="netty-demo" target="1.8" />
       <module name="netty-RPC-V1" target="1.8" />
-      <module name="spring-demo" target="1.8" />
       <module name="springboot-demo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
