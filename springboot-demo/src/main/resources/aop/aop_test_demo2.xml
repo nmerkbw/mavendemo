@@ -11,16 +11,16 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
     <bean id="user"
-          class="com.example.test.aop.demo2.User">
+          class="com.example.demo.test.aop.demo2.User">
         <property name="id" value="1"/>
         <property name="name" value="jack"/>
     </bean>
 
     <bean id="loginServiceImpl"
-          class="com.example.test.aop.demo2.LoginServiceImpl"/>
+          class="com.example.demo.test.aop.demo2.LoginServiceImpl"/>
 
     <bean id="log"
-          class="com.example.test.aop.demo2.Log2">
+          class="com.example.demo.test.aop.demo2.Log2">
     </bean>
 
     <!--aop的配置-->
@@ -29,7 +29,7 @@
         <aop:aspect ref="log">
             <!--定义一个切点, expression表示的是切点拦截的方法。-->
             <aop:pointcut id="logPointcut"
-                          expression="execution(* com.example.test.aop.demo2.LoginServiceImpl.*(..))"/>
+                          expression="execution(* com.example.demo.test.aop.demo2.LoginServiceImpl.*(..))"/>
             <!--下面的都是通知类型：-->
             <aop:before method="before" pointcut-ref="logPointcut"/>
             <aop:after method="after" pointcut-ref="logPointcut"/>

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/algorithm/algorithm.iml" filepath="$PROJECT_DIR$/algorithm/algorithm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/alibaba/alibaba.iml" filepath="$PROJECT_DIR$/alibaba/alibaba.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/distributed-demo/distributed-demo.iml" filepath="$PROJECT_DIR$/distributed-demo/distributed-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/java-demo/java-demo.iml" filepath="$PROJECT_DIR$/java-demo/java-demo.iml" />

@@ -13,14 +13,14 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <context:component-scan
-            base-package="com.example.test.aop.demo3" />
+            base-package="com.example.demo.test.aop.demo3" />
 
     <aop:config>
         <!--切面-->
         <aop:aspect ref="log">
             <!--切点-->
             <aop:pointcut
-                    expression="execution(* com.example.test.aop.demo3.Chief.*(..))"
+                    expression="execution(* com.example.demo.test.aop.demo3.Chief.*(..))"
                     id="chiefPointCut"/>
            <!-- <aop:before method="washOven" pointcut-ref="chiefPointCut" />
             <aop:before method="prepare" pointcut-ref="chiefPointCut" />-->

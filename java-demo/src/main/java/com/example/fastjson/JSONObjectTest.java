@@ -6,9 +6,7 @@ import java.util.Map;
 import com.alibaba.fastjson.JSONObject;
 
 import com.example.fastjson.domain.Info;
-import com.example.fastjson.domain.User;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 /**
  * description
@@ -53,6 +51,12 @@ public class JSONObjectTest {
         Map<String, Object> map = new HashMap<>();
         map.put("key", null);
         System.out.println(map.size());
+    }
+
+
+    @Test
+    public void test_json_json(){
+
     }
 
 }

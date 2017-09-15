@@ -29,6 +29,7 @@
         <module>distributed-demo</module>
         <module>mockito-demo</module>
         <module>netty-RPC-V1</module>
+        <module>alibaba</module>
     </modules>
 
     <dependencyManagement>

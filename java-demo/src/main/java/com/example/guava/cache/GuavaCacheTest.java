@@ -3,7 +3,6 @@ package com.example.guava.cache;
 import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
@@ -29,30 +28,36 @@ public class GuavaCacheTest {
     @Test
     public void test_cache() throws ExecutionException {
         LoadingCache<String, String> caches = CacheBuilder.newBuilder()
+            .concurrencyLevel(Runtime.getRuntime().availableProcessors())
+            .expireAfterAccess(10, TimeUnit.MINUTES)// 10分钟该key没有被读写访问，就清楚
             .maximumSize(1000) //设置最大容量
             .expireAfterWrite(10, TimeUnit.MINUTES) //写了的10分钟后过期
-            .removalListener(new RemovalListener<String,String>() {// 添加了移除监听器。
-                @Override
-                public void onRemoval(RemovalNotification<String, String> notification) {
-                    notification.getKey();
-                    notification.getValue();
-                    notification.getCause();
-                }
+            .removalListener((RemovalNotification<String, String> notification) -> {// 添加了移除监听器。
+                System.out.println("移除了数据："+notification.getKey()+"--"+notification.getValue()+"--"+notification.getCause());
             })
             .build(new CacheLoader<String,String>(){
                 @Override
                 public String load(String key) throws Exception {
                     return getFromDatabase(key);
                 }
+                // 模拟从数据库查询
                 private String getFromDatabase(String key){
                     Random random = new Random();
-                    return "value of database-" + random.nextInt(1000);
+                    System.out.println("数据库查询");
+                    return "value of "+ key +" from database-" + random.nextInt(1000);
                 }
             });
 
         for (Integer i=0; i<100; i++){
             System.out.println(caches.get(i.toString()));
         }
+        System.out.println("=================================");
+        for (Integer i=0; i<105; i++){
+            System.out.println(caches.get(i.toString()));
+        }
+
+        caches.invalidate("1");
+        caches.invalidate("44");
     }
 
 

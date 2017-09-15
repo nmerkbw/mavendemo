@@ -5,12 +5,15 @@
     <option name="delegateToJavac" value="true" />
   </component>
   <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="ajc" />
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="algorithm" />
+        <module name="alibaba" />
         <module name="common" />
         <module name="distributed-demo" />
         <module name="java-demo" />
@@ -22,10 +25,11 @@
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="algorithm" target="1.8" />
+      <module name="alibaba" target="1.8" />
       <module name="common" target="1.8" />
       <module name="distributed-demo" target="1.8" />
       <module name="java-demo" target="1.8" />
-      <module name="javamaven" target="1.8" />
+      <module name="javamaven" target="1.5" />
       <module name="mockito-demo" target="1.8" />
       <module name="netty-demo" target="1.8" />
       <module name="netty-RPC-V1" target="1.8" />
