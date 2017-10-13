@@ -1,7 +1,6 @@
 package com.example.utils;
 
 
-import org.junit.Test;
 
 import java.io.*;
 import java.util.regex.Pattern;
@@ -10,10 +9,10 @@ import java.util.regex.Pattern;
  * function: 文件操作的工具类
  * @author LL
  * @since 2016-7-19
- * 
+ *
  */
 public class FileUtil {
-    
+
     public static final String localTypes = "epub,txt";
     public static final String downTypes = "epub,txt,rar,zip";
 
@@ -50,27 +49,22 @@ public class FileUtil {
           return true;
         }
 	}
-	
+
 	//根据path创建目录
 	public static void createFolderIfNotExist(String path){
 		File f = new File(path);
 		if(!f.exists())
 			f.mkdirs();
 	}
-	
+
 	//根据File创建一个目录
 	public static void createFolderIfNotExist(File f){
 		if(!f.exists())
 			f.mkdirs();
 	}
-	
-	@Test
-	public void testeee(){
-		createFolderIfNotExist("f:/purplecollar/advertisement/img");
-		
-	}
-	
-	
+
+
+
 	/**
      * function：将所得的InputStream，复制到指定目标的文件中
      *
@@ -388,5 +382,5 @@ public class FileUtil {
         return buffer;
     }
 
-    
+
 }

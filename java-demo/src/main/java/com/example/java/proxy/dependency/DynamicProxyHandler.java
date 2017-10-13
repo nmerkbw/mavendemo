@@ -10,6 +10,7 @@ import java.lang.reflect.Method;
  * date 2017/7/28
  */
 public class DynamicProxyHandler implements InvocationHandler {
+    // 被代理的对象
     private Object proxied;
     public DynamicProxyHandler(Object proxied) {
         this.proxied = proxied;

@@ -30,7 +30,34 @@
         <module>mockito-demo</module>
         <module>netty-RPC-V1</module>
         <module>alibaba</module>
+        <module>java9-demo</module>
+        <module>hbase-demo</module>
     </modules>
+
+
+    <dependencies>
+        <!--子pom都会包含这个包-->
+        <!--<dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>-->
+        <!--<dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>-->
+        <!--<dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+        </dependency>-->
+    </dependencies>
 
     <dependencyManagement>
         <dependencies>
@@ -137,7 +164,7 @@
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.9</version>
+                <version>4.11</version>
             </dependency>
             <!--fastjson-->
             <dependency>

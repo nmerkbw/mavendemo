@@ -7,6 +7,9 @@ package com.example.java.proxy.dependency;
  * date 2017/7/28
  */
 public interface Interface {
+
     void doSomething();
+
+
     void somethingElse(String arg);
 }

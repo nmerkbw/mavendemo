@@ -1,19 +1,23 @@
 package com.example.utils;
 
-import org.junit.Test;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.*;
+
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
 
 /**
  * function: 图片传输需要的操作
  * @author LL
  * @since 2016-7-19
- * 
+ *
  */
 @SuppressWarnings("unused")
 public class ImageBase64Util {
@@ -61,7 +65,7 @@ public class ImageBase64Util {
         ImageIO.write(bi1, "jpg", w2);//不管输出什么格式图片，此处不需改动
         return fileName;
     }
-    
+
     /**
      * 将图片经过base64压缩之后的字符串解压成图片(这里的base64字符串包是通过web端上传的，包含前面的图片类型信息，比如:dataStructure:image/jpeg;base64,)
      * @param base64 base64编码之后的字符串
@@ -106,10 +110,10 @@ public class ImageBase64Util {
 	    	File f = new File(path);
 			if(!f.exists())
 				f.mkdirs();
-			
+
 	    	if(!path.endsWith("/"))
 	    		path = path+"/";
-	    	
+
 	        FileOutputStream write = new FileOutputStream(new File(path + imgName));
 	        byte[] decoderBytes = decoder.decodeBuffer(nbase64);
 	        write.write(decoderBytes);
@@ -120,9 +124,8 @@ public class ImageBase64Util {
 	    }
 	    return "decodeFail";
 	}
-	
+
 //============================================================================================================//
-	@Test
 	public void test2(){
 		String base64=null;
 		try {
@@ -131,7 +134,7 @@ public class ImageBase64Util {
 			e.printStackTrace();
 		}
 		System.out.println(base64);
-		
+
 		String name = decodeBase64ToImage(base64, "f:", "my3");
 		System.out.println(name);
 	}
