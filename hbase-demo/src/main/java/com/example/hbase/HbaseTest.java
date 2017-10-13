@@ -23,7 +23,7 @@ import org.apache.hadoop.hbase.util.Bytes;
  * @email chris.lyt@cainiao.com
  * @date 2017/10/11
  */
-public class EstablishConnection {
+public class HbaseTest {
 
     // 声明静态配置
     static Configuration conf = null;
@@ -34,17 +34,16 @@ public class EstablishConnection {
         tablePool = new HTablePool(conf, 10);
     }
 
-    /*
+    /**
      * 创建表
      *
      * @tableName 表名
-     *
      * @family 列族列表
      */
     public static void creatTable(String tableName, String[] family)
             throws Exception {
-        HBaseAdmin admin = new HBaseAdmin(conf);
-        HTableDescriptor desc = new HTableDescriptor(tableName);
+        HBaseAdmin admin = new HBaseAdmin(conf);//数据库
+        HTableDescriptor desc = new HTableDescriptor(tableName);//列族
         for (int i = 0; i < family.length; i++) {
             desc.addFamily(new HColumnDescriptor(family[i]));
         }
@@ -57,67 +56,43 @@ public class EstablishConnection {
         }
     }
 
-    /*
+    /**
      * 为表添加数据（适合知道有多少列族的固定表）
      *
      * @rowKey rowKey
-     *
      * @tableName 表名
-     *
      * @column1 第一个列族列表
-     *
      * @value1 第一个列的值的列表
-     *
      * @column2 第二个列族列表
-     *
      * @value2 第二个列的值的列表
      */
     public static void addData(String rowKey, String tableName,
             String[] column1, String[] value1, String[] column2, String[] value2)
             throws IOException {
-        Put put = new Put(Bytes.toBytes(rowKey));// 设置rowkey
-        HTable table = (HTable) tablePool.getTable(tableName);// 获取表
-        HColumnDescriptor[] columnFamilies = table.getTableDescriptor() // 获取所有的列族
-                .getColumnFamilies();
-
+        Put put = new Put(Bytes.toBytes(rowKey));//设置rowkey
+        HTable table = (HTable) tablePool.getTable(tableName);//获取表
+        HColumnDescriptor[] columnFamilies = table.getTableDescriptor().getColumnFamilies();//获取所有的列族
         for (int i = 0; i < columnFamilies.length; i++) {
             String familyName = columnFamilies[i].getNameAsString(); // 获取列族名
             if (familyName.equals("article")) { // article列族put数据
                 for (int j = 0; j < column1.length; j++) {
-                    put.add(Bytes.toBytes(familyName),
-                            Bytes.toBytes(column1[j]), Bytes.toBytes(value1[j]));
+                    put.add(Bytes.toBytes(familyName), Bytes.toBytes(column1[j]), Bytes.toBytes(value1[j]));
                 }
             }
             if (familyName.equals("author")) { // author列族put数据
                 for (int j = 0; j < column2.length; j++) {
-                    put.add(Bytes.toBytes(familyName),
-                            Bytes.toBytes(column2[j]), Bytes.toBytes(value2[j]));
+                    put.add(Bytes.toBytes(familyName), Bytes.toBytes(column2[j]), Bytes.toBytes(value2[j]));
                 }
             }
         }
         table.put(put);
         System.out.println("add data Success!");
-
-        /*
-         * Put put = new Put(Bytes.toBytes("rowkey1"));
-         * put.add(Bytes.toBytes("article"), Bytes.toBytes("title"),
-         * Bytes.toBytes("Head First HBase")); put.add(Bytes.toBytes("article"),
-         * Bytes.toBytes("content"), Bytes.toBytes(
-         * "HBase is the Hadoop database. Use it when you need random, realtime read/write access to your Big Data."
-         * )); put.add(Bytes.toBytes("article"), Bytes.toBytes("tags"),
-         * Bytes.toBytes("Hadoop,HBase,NoSQL"));
-         * put.add(Bytes.toBytes("author"), Bytes.toBytes("name"),
-         * Bytes.toBytes("nicholas")); put.add(Bytes.toBytes("author"),
-         * Bytes.toBytes("nickname"), Bytes.toBytes("lee")); HTable table = new
-         * HTable(conf, Bytes.toBytes("blog2"));table.put(put);
-         */
     }
 
-    /*
+    /**
      * 根据rwokey查询
      *
      * @rowKey rowKey
-     *
      * @tableName 表名
      */
     public static Result getResult(String tableName, String rowKey)
@@ -125,18 +100,18 @@ public class EstablishConnection {
         Get get = new Get(Bytes.toBytes(rowKey));
         HTable table = (HTable) tablePool.getTable(tableName);// 获取表
         Result result = table.get(get);
+        System.out.println("-----------------start--------------------------");
         for (KeyValue kv : result.list()) {
             System.out.println("family:" + Bytes.toString(kv.getFamily()));
-            System.out
-                    .println("qualifier:" + Bytes.toString(kv.getQualifier()));
+            System.out.println("qualifier:" + Bytes.toString(kv.getQualifier()));
             System.out.println("value:" + Bytes.toString(kv.getValue()));
             System.out.println("Timestamp:" + kv.getTimestamp());
-            System.out.println("-------------------------------------------");
         }
+        System.out.println("-----------------end--------------------------");
         return result;
     }
 
-    /*
+    /**
      * 遍历查询hbase表
      *
      * @tableName 表名
@@ -149,15 +124,11 @@ public class EstablishConnection {
             rs = table.getScanner(scan);
             for (Result r : rs) {
                 for (KeyValue kv : r.list()) {
-                    System.out.println("family:"
-                            + Bytes.toString(kv.getFamily()));
-                    System.out.println("qualifier:"
-                            + Bytes.toString(kv.getQualifier()));
-                    System.out
-                            .println("value:" + Bytes.toString(kv.getValue()));
+                    System.out.println("family:" + Bytes.toString(kv.getFamily()));
+                    System.out.println("qualifier:" + Bytes.toString(kv.getQualifier()));
+                    System.out.println("value:" + Bytes.toString(kv.getValue()));
                     System.out.println("timestamp:" + kv.getTimestamp());
-                    System.out
-                            .println("-------------------------------------------");
+                    System.out.println("-------------------------------------------");
                 }
             }
         } finally {
@@ -165,41 +136,38 @@ public class EstablishConnection {
         }
     }
 
-    /*
+    /**
      * 查询表中的某一列
      *
-     * @tableName 表名
-     *
-     * @rowKey rowKey
+     * @param tableName 表名
+     * @param rowKey 行键
+     * @param familyName 列族
+     * @param columnName 列修饰符
+     * @throws IOException
      */
-    public static void getResultByColumn(String tableName, String rowKey,
-            String familyName, String columnName) throws IOException {
+    public static void getResultByColumn(String tableName, String rowKey, String familyName, String columnName) throws IOException {
         HTable table = (HTable) tablePool.getTable(tableName);
         Get get = new Get(Bytes.toBytes(rowKey));
         get.addColumn(Bytes.toBytes(familyName), Bytes.toBytes(columnName)); // 获取指定列族和列修饰符对应的列
         // assertThat(Bytes.toString(table.get(get).list().get(0).getValue()),is("一叶渡江"));
         Result result = table.get(get);
+        System.out.println("---------------start----------------------------");
         for (KeyValue kv : result.list()) {
-            System.out.println("family:" + Bytes.toString(kv.getFamily()));
-            System.out
-                    .println("qualifier:" + Bytes.toString(kv.getQualifier()));
-            System.out.println("value:" + Bytes.toString(kv.getValue()));
-            System.out.println("Timestamp:" + kv.getTimestamp());
-            System.out.println("-------------------------------------------");
+            System.out.println("family: " + Bytes.toString(kv.getFamily()));
+            System.out.println("qualifier: " + Bytes.toString(kv.getQualifier()));
+            System.out.println("value: " + Bytes.toString(kv.getValue()));
+            System.out.println("Timestamp: " + kv.getTimestamp());
         }
+        System.out.println("----------------end---------------------------");
     }
 
-    /*
+    /**
      * 更新表中的某一列
      *
      * @tableName 表名
-     *
      * @rowKey rowKey
-     *
      * @familyName 列族名
-     *
      * @columnName 列名
-     *
      * @value 更新后的值
      */
     public static void updateTable(String tableName, String rowKey,
@@ -213,15 +181,12 @@ public class EstablishConnection {
         System.out.println("update table Success!");
     }
 
-    /*
+    /**
      * 查询某列数据的多个版本
      *
      * @tableName 表名
-     *
      * @rowKey rowKey
-     *
      * @familyName 列族名
-     *
      * @columnName 列名
      */
     public static void getResultByVersion(String tableName, String rowKey,
@@ -233,28 +198,19 @@ public class EstablishConnection {
         Result result = table.get(get);
         for (KeyValue kv : result.list()) {
             System.out.println("family:" + Bytes.toString(kv.getFamily()));
-            System.out
-                    .println("qualifier:" + Bytes.toString(kv.getQualifier()));
+            System.out.println("qualifier:" + Bytes.toString(kv.getQualifier()));
             System.out.println("value:" + Bytes.toString(kv.getValue()));
             System.out.println("Timestamp:" + kv.getTimestamp());
             System.out.println("-------------------------------------------");
         }
-        /*
-         * List<?> results = table.get(get).list(); Iterator<?> it =
-         * results.iterator(); while (it.hasNext()) {
-         * System.out.println(it.next().toString()); }
-         */
     }
 
-    /*
+    /**
      * 删除指定的列
      *
      * @tableName 表名
-     *
      * @rowKey rowKey
-     *
      * @familyName 列族名
-     *
      * @columnName 列名
      */
     public static void deleteColumn(String tableName, String rowKey,
@@ -267,11 +223,10 @@ public class EstablishConnection {
         System.out.println(falilyName + ":" + columnName + "is deleted!");
     }
 
-    /*
+    /**
      * 删除指定的列
      *
      * @tableName 表名
-     *
      * @rowKey rowKey
      */
     public static void deleteAllColumn(String tableName, String rowKey)
@@ -282,7 +237,7 @@ public class EstablishConnection {
         System.out.println("all columns are deleted!");
     }
 
-    /*
+    /**
      * 删除表
      *
      * @tableName 表名
@@ -297,13 +252,13 @@ public class EstablishConnection {
     public static void main(String[] args) throws Exception {
 
         // 创建表
-        String tableName = "blog2";
+        String tableName = "blog";
         String[] family = { "article","author" };
         creatTable(tableName,family);
+        deleteTable(tableName);
 
         // 为表添加数据
-
-        String[] column1 = { "title", "content", "tag" };
+        /*String[] column1 = { "title", "content", "tag" };
         String[] value1 = {"Head First HBase",
             "HBase is the Hadoop database. Use it when you need random, realtime read/write access to your Big Data.",
             "Hadoop,HBase,NoSQL" };
@@ -332,12 +287,7 @@ public class EstablishConnection {
         getResultScann("blog2");
 
         // 查询某列的多版本
-        getResultByVersion("blog2", "rowkey1", "author", "name");
+        getResultByVersion("blog2", "rowkey1", "author", "name");*/
     }
-
-
-
-
-
 
 }
