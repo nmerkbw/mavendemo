@@ -14,11 +14,13 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/springboot-demo/pom.xml" />
         <option value="$PROJECT_DIR$/java-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/zhihu-crawler/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/java-concurrent/pom.xml" />
+        <option value="$PROJECT_DIR$/java9-demo/pom.xml" />
       </set>
     </option>
   </component>

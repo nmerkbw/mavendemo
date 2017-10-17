@@ -30,7 +30,6 @@
         <module>mockito-demo</module>
         <module>netty-RPC-V1</module>
         <module>alibaba</module>
-        <module>java9-demo</module>
         <module>hbase-demo</module>
     </modules>
 
