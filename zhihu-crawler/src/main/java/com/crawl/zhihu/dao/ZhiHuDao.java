@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import com.crawl.zhihu.entity.User;
 
 public interface ZhiHuDao {
-
     /**
      * 判断当前sql执行的操作记录是否已经存在
      * @param sql

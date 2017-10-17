@@ -22,6 +22,9 @@ import org.apache.log4j.Logger;
 public class ZhiHuDaoMysqlImpl implements ZhiHuDao {
     private static Logger logger =  Logger.getLogger(ZhiHuDao.class);
 
+    /**
+     * 数据库表初始化
+     */
     public static void DBTablesInit() {
         ResultSet rs = null;
         Properties p = new Properties();
@@ -36,8 +39,8 @@ public class ZhiHuDaoMysqlImpl implements ZhiHuDao {
                 //创建url表
                 st.execute(p.getProperty("createUrlTable"));
                 logger.info("url表创建成功");
-//                st.execute(p.getProperty("createUrlIndex"));
-//                logger.info("url表索引创建成功");
+                //st.execute(p.getProperty("createUrlIndex"));
+                //logger.info("url表索引创建成功");
             }
             else{
                 logger.info("url表已存在");
@@ -48,8 +51,8 @@ public class ZhiHuDaoMysqlImpl implements ZhiHuDao {
                 //创建user表
                 st.execute(p.getProperty("createUserTable"));
                 logger.info("user表创建成功");
-//                st.execute(p.getProperty("createUserIndex"));
-//                logger.info("user表索引创建成功");
+                //st.execute(p.getProperty("createUserIndex"));
+                //logger.info("user表索引创建成功");
             }
             else{
                 logger.info("user表已存在");
